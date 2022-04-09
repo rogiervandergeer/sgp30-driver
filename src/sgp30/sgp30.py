@@ -6,6 +6,9 @@ from typing import Tuple, Optional, List
 from smbus2 import SMBus, i2c_msg
 
 
+from sgp30.humidity import absolute_humidity
+
+
 class InvalidCRC(ValueError):
     pass
 
@@ -98,7 +101,7 @@ class SGP30:
         return data[0], data[1]
 
     def set_humidity(self, humidity: float) -> None:
-        """Set the humidity.
+        """Set the humidity for the humidity compensation.
 
         Accepts an absolute humidity in g/m3. After setting the new humidity value, this value will be used
         in the on-chip humidity compensation algorithm.
@@ -108,6 +111,16 @@ class SGP30:
             raise ValueError(f"Humidity value may not exceed 255 g/m3.")
         value = int(humidity * 255)
         self._command(b"\x20\x61", parameters=[value])
+
+    def set_relative_humidity(self, humidity: float, temperature: float) -> None:
+        """Set the humidity for the humidity compensation.
+
+        Accepts a relative humidity in %RH and a temperature in °C."""
+        self.set_humidity(
+            humidity=absolute_humidity(
+                temperature=temperature, relative_humidity=humidity
+            )
+        )
 
     def _command(
         self,

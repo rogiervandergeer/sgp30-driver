@@ -60,9 +60,17 @@ In order to ensure the proper working of the baseline compensation algorithm one
 
 ### Humidity compensation
 
-The SGP30 has on-chip humidity compensation. In order to enable the compensation, set
-the humidity using `set_humidity()`:
+The SGP30 has on-chip humidity compensation. In order to enable the compensation, you will need to get a
+humidity measurement from another sensor, and then set the humidity using `set_humidity()`:
 ```python
 device.set_humidity(15.2)
 ```
 The accepted humidity value is the absolute humidity in `g/m3`.
+
+Alternatively, if only the relative humidity is available:
+```python
+device.set_relative_humidity(
+    humidity=0.5,  # 50 %RH
+    temperature=20,  # 20°C
+)
+```
