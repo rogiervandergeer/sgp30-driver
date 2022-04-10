@@ -34,3 +34,10 @@ class TestSGP30:
     )
     def test_encode(self, input_data, output_data):
         assert SGP30._encode(input_data) == output_data
+
+    def test_set_humidity(self, mocker):
+        bus = mocker.Mock()
+        device = SGP30(bus=bus)
+        device.set_humidity(15.50)
+        bus.i2c_rdwr.assert_called_once()
+        assert bytes(bus.i2c_rdwr.call_args[0][0]) == b"\x20\x61\x0f\x80\x62"

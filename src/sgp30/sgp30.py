@@ -109,7 +109,7 @@ class SGP30:
         Restarting the sensor or setting a humidity of 0 sets the humidity value to its default (11.57g/m3)."""
         if int(humidity) > 255:
             raise ValueError(f"Humidity value may not exceed 255 g/m3.")
-        value = int(humidity * 255)
+        value = int(humidity * 256)
         self._command(b"\x20\x61", parameters=[value])
 
     def set_relative_humidity(self, humidity: float, temperature: float) -> None:
