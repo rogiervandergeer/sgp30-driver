@@ -1,7 +1,7 @@
 # sgp30-driver
 Easy-to-use python driver for the [Sensirion SGP30](https://sensirion.com/us/products/catalog/SGP30/) multi gas sensor
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/rogiervandergeer/sgp30-driver/Continuous%20Integration) 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rogiervandergeer/sgp30-driver/test.yaml?branch=main) 
 ![PyPI](https://img.shields.io/pypi/v/sgp30-driver)
 ![PyPI - License](https://img.shields.io/pypi/l/sgp30-driver)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/sgp30-driver) 
