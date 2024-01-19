@@ -1,3 +1,28 @@
 [build-system]
-requires = ["setuptools >= 40.6.0", "wheel"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "sgp30-driver"
+dependencies = [
+    "smbus2>=0.3.0",
+]
+authors = [{name = "Rogier van der Geer", email = "rogier@vander-geer.nl"}]
+description = "Python driver for the Sensirion SGP30 multi gas sensor"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+    "Typing :: Typed",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-mock"]
+
+[project.urls]
+Repository = "https://github.com/rogiervandergeer/sgp30-driver"
+
+[tool.setuptools_scm]
+version_file = "src/sgp30/_version.py"

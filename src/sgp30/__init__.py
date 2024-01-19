@@ -1,3 +1,4 @@
+from ._version import __version__
 from .sgp30 import SGP30
 
-__version__ = "0.2.1"
+__all__ = ["__version__", "SGP30"]
